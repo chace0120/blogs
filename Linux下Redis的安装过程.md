@@ -14,23 +14,23 @@ categories: [开发笔记]
 
 下载redis的方式主要有两种，一种是自己下载tar.gz包，然后上传到服务器上进行解压缩。另一种是通过wget命令直接下载redis的压缩包到服务器，然后解压缩。
 
-```
+``` Shell
  wget http://download.redis.io/releases/redis-3.0.5.tar.gz
 ```
 
-看到这个教程时，根据自己的需要去选择redis的版本。
+看到此处时，根据自己的需要去选择redis的版本。
 
 ### 编译安装redis
 
 下载好redis的tar.gz包后，在指定的位置进行解压缩：
 
-```
+``` Shell
  tar -xzvf redis-3.0.5.tar.gz
 ```
 
 进入解压缩后的程序目录，使用make对redis进行编译：
 
-```
+``` Shell
  cd redis-3.0.5
 
  make
@@ -50,10 +50,60 @@ categories: [开发笔记]
 
 在make命令执行后，你可以选择不执行make install命令，自己手动的将程序目录下src目录中的对应可执行文件copy到/usr/bin下，这招是从oschina的红薯[那里](http://www.oschina.net/question/12_18065?fromerr=uNX17fsi)学来的。
 
-当然你可能会有疑惑，make install是安装到了/usr/local/bin下，而自己copy为何在/usr/bin下。其实没有差别，这两个不同的位置都可以起到同一个作用，在任何位置执行redis相关命令。具体可搜索/usr/bin和/usr/local/bin目录的作用。
+当然你可能会有疑惑，make install是安装到了/usr/local/bin下，而自己copy为何在/usr/bin下。其实这两个不同的位置都可以起到同一个作用，在任何位置执行redis相关命令。
+
+- /usr/bin下面的通常都是系统预装的可执行程序，会随着系统升级而改变。
+- /usr/local/bin目录是给用户放置自己的可执行程序的地方，推荐放在这里，不会被系统升级而覆盖同名文件。
+- 如果两个目录下有相同的可执行程序，谁优先执行受到PATH环境变量的影响。
 
 ### 配置redis
 
+将redis的配置文件复制到/etc/目录下：
+
+``` Shell
+cp redis.conf /etc/
+```
+
+为了让redis后台运行，修改redis.conf文件，修改daemonize配置项为yes：
+
+``` Shell
+vi /etc/redis.conf
+```
+
 ### 运行redis
 
+完成上述步骤后，启动redis：
+
+``` Shell
+redis-server /etc/redis.conf
+```
+
+检查redis是否启动成功：
+
+``` Shell
+ps -ef | grep redis
+```
+
+看到类似下面的一行，表示启动成功：
+
+``` Shell
+root     18443     1  0 13:05 ?        00:00:00 ./redis-server *:6379
+```
+
+如果需要设置redis开机启动项，点击[这里](http://itbilu.com/linux/management/4kB2ninp.html)。
+
 ### redis重点配置项说明
+
+- daemonize：是否以后台daemon方式运行
+- pidfile：pid文件位置
+- port：监听的端口号
+- timeout：请求超时时间
+- loglevel：log信息级别
+- logfile：log文件位置
+- databases：开启数据库的数量
+- save \* \*：保存快照的频率，第一个*表示多长时间，第三个*表示执行多少次写操作。在一定时间内执行一定数量的写操作时，自动保存快照。可设置多个条件。
+- rdbcompression：是否使用压缩
+- dbfilename：数据快照文件名（只是文件名）
+- dir：数据快照的保存目录（仅目录）
+- appendonly：是否开启appendonlylog，开启的话每次写操作会记一条log，这会提高数据抗风险能力，但影响效率。
+- appendfsync：appendonlylog如何同步到磁盘。三个选项，分别是每次写都强制调用fsync、每秒启用一次fsync、不调用fsync等待系统自己同步
