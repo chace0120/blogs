@@ -2,7 +2,7 @@
 title: CentOS部署应用常用命令汇总
 date: 2016-06-08 17:05:40
 tags: [centos,linux]
-categories: [开发笔记]
+categories: [系统运维]
 ---
 
 ### 前言
@@ -59,3 +59,28 @@ nohup java -jar <jar包位置> >/dev/null &
 >/dev/null表示运行jar时控制台输出重定向到null中，就是控制台不显示信息。
 
 &表示程序作为后台进程运行，这样即使关闭控制终端，程序依然在运行不会终止。
+
+运行jar时可能需要配置内存，运行如下命令：
+
+``` Shell
+nohup java -Xmx1024m -Xms1024m -jar <jar包位置> >/dev/null &
+```
+#### 查看程序内存占用的排行信息
+
+``` Shell
+ps -eo rss,pmem,pcpu,vsize,args |  sort -k 1 -r -n | less
+```
+
+- rss: resident set size,表示进程占用RAM(内存)的大小，单位是KB
+- pmem: %M, 占用内存的百分比
+- pcpu: %C，占用cpu的百分比
+- vsize: 表示进程占用的虚拟内存的大小，KB
+- args: 进程名（command）
+
+sort命令对ps结果进行排序
+
+-k 1: 按第一个参数 rss进行排序
+
+-r: 逆序
+
+-n: numeric，按数字来排序

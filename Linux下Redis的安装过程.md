@@ -44,9 +44,10 @@ categories: [开发笔记]
 - redis-check-aof：数据修复工具
 - redis-check-dump：检查导出工具
 
-接着执行安装命令，redis默认会将上述的可执行文件生成到/usr/local/bin目录下，你也可以通过命令参数来指定安装的目录位置，具体查看redis程序目录下的ReadMe文件。
+手动将上述的执行文件复制到/usr/local/bin下，即可在任意位置执行这些redis命令了，不需要每次执行都要带上执行文件的路径位置了。
 
-编译安装过后，就可以在任意的位置执行redis服务了，不需要每次执行都要带上执行文件的路径位置了。
+或者你还可以执行make install命令，默认会自动将生成的可执行文件复制到/usr/local/bin下，你也可以通过命令参数来指定安装的目录位置，具体查看redis程序目录下的ReadMe文件。
+
 
 > 可能你会问，linux下安装程序，一般都是需要./configure,make和make install三个步骤，为何这里没有configure？那是因为configure是程序安装目录下的一个可执行脚本，一般用来生成 Makefile，为下一步的编译做准备。而redis的安装包中已经存在一个Makefile，所以自然省去了configure这步。
 
@@ -111,3 +112,42 @@ root     18443     1  0 13:05 ?        00:00:00 ./redis-server *:6379
 - dir：数据快照的保存目录（仅目录）
 - appendonly：是否开启appendonlylog，开启的话每次写操作会记一条log，这会提高数据抗风险能力，但影响效率
 - appendfsync：appendonlylog如何同步到磁盘。三个选项，分别是每次写都强制调用fsync、每秒启用一次fsync、不调用fsync等待系统自己同步
+
+### 最佳配置实践
+
+进入到redis的解压目录下，开始进行如下的配置操作：
+
+- 创建配置文件和数据文件的存储位置
+
+``` Shell
+sudo mkdir /etc/redis
+sudo mkdir /var/redis
+```
+
+- 复制redis解压包中的启动脚本到操作系统的自启动目录下，建议重命名文件时加上端口号
+
+``` Shell
+sudo cp ./utils/redis_init_script /etc/init.d/redis_6379
+```
+
+- 编辑自启动的redis脚本
+
+``` Shell
+sudo vi /etc/init.d/redis_6379
+```
+
+将其中**REDISPORT**改为实际使用的端口号。仔细查看脚本中的代码，会发现其中pid文件路径和配置文件名称都依赖于端口号。
+
+- 复制配置文件到etc下
+
+``` Shell
+sudo cp ./redis.conf /etc/redis/6379.conf
+```
+
+可以看到，实际使用的配置文件以端口号来命名，这样自启动脚本执行时就会使用这个配置文件。
+
+- 创建redis的工作数据目录，建议以端口进行区分
+
+``` Shell
+sudo mkdir /var/redis/6379
+```
