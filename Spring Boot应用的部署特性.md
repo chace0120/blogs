@@ -79,7 +79,7 @@ JAVA_OPTS="-Xmx512m -Xms512m"
     <version>${mybatis.starter.version}</version>
 </dependency>
 ```
-3. 在SqlSessionFactory定义处重置VFS，如下所示
+3. 在SqlSessionFactory定义处重置VFS，如下所示。
 ``` Java
 @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource) {
@@ -101,3 +101,19 @@ JAVA_OPTS="-Xmx512m -Xms512m"
 ### 小结
 
 膜拜过Spring Boot的部署特性后，笔者对比自己之前实现的服务化脚本，总结一下发现的不同点吧。
+
+- 判断应用运行状态的方式不同。
+
+笔者之前实现的方式为，通过ps命令解析出应用对应的进程id，如果这个进程id存在，则表示应用运行正常。
+
+通过查看Spring Boot生成的默认脚本的内容以及jar包的运行结果，会发现应用运行后会生成一个pid文件，里面存放在应用启动时的进程id，通过读取pid文件中的进程id号，判断应用是否正常运行。
+
+其实如果你安装过Linux应用程序的话，会发现生成pid文件是一种主流的做法~
+
+- Spring Boot默认脚本内容更全面，命令更适配，考虑情况更多些。
+
+笔者自我实现的脚本，可能更倾向于笔者当前所有处于的服务器环境配置，脚本命令中缺乏各种情况的考虑，偏小众。
+
+再看Spring Boot默认脚本中内容，你会发现更多的命令处理，虽然有些命令笔者也很陌生，不过大体意思还是看懂的。再次向Spring Boot的广泛参与实现者致敬！
+
+最后，再次献上笔者自己实现的[脚本地址](http://git.oschina.net/devchenx/ShellScriptAboutJar)吧，仅供参考！
