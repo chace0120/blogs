@@ -1,7 +1,7 @@
 ---
 title: CentOS下安装Nginx
 date: 2016-05-23 09:29:40
-tags: [nginx,centos,linux]
+tags: [Nginx,CentOS,Linux]
 categories: [开发笔记]
 ---
 ### 前言
@@ -21,6 +21,8 @@ categories: [开发笔记]
 - [CentOS nginx安装与配置](http://www.jianshu.com/p/d5114a2a2052)
 
 方法二：由于CentOS下，yum源不提供nginx的安装，所以可以通过添加yum源进行快速安装。这种方式的好处是快，方便。不妥之处是不可控，都是别人准备好的东西进行的“一键安装”，今后想安装第三方模块也无从下手。而且笔者目前对这种方式也不是特别理解，所以可能出了差错，也爱莫能助。
+
+<!-- more -->
 
 可参照如下教程：
 

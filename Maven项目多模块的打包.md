@@ -1,8 +1,11 @@
 ---
 title: Maven项目多模块的打包
 date: 2016-05-13 23:08:49
-tags: [maven,module,springboot]
-categories: [开发笔记]
+tags:
+- Maven
+- Spring Boot
+categories:
+- 开发笔记
 ---
 ### 前言
 
@@ -46,6 +49,8 @@ A依赖C，B也依赖C，A和B可以分别打包成可执行的jar文件。
 ```
 
 **PS：**这里注意C打包出来的应该是不可执行的jar包，所以不要在C的pom中定义spring-boot-maven-plugin插件，因为这个SpringBoot插件会在Maven的package后进行二次打包，目的为了生成可执行jar包，如果C中定义了这个插件，会报错提示没有找到main函数。
+
+<!-- more -->
 
 ### 按需打包
 

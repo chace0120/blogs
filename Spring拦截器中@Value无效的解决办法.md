@@ -1,8 +1,11 @@
 ---
 title: Spring拦截器中@Value无效的解决办法
 date: 2016-05-11 23:08:49
-tags: [spring,springboot,interceptor]
-categories: [开发笔记]
+tags:
+- Spring
+- Spring Boot
+categories:
+- 开发笔记
 ---
 最近在使用SpringBoot开发项目时，用到了SpringMVC拦截器的功能。鉴于SpringBoot指南中建议使用Java Config的配置方式，拦截器的配置也不例外，从原先的xml配置方式转为了Java Config。
 
@@ -22,6 +25,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 ```
 
 上面的拦截器配置在网上搜索一下，也是随处可见的。拦截器可以正常运作，但是拦截器中@Value注解的属性值为null，没有读取到期望的properties文件中的值。
+
+<!-- more -->
 
 再看拦截器的另一种配置方式：
 

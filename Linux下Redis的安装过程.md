@@ -1,8 +1,12 @@
 ---
 title: Linux下Redis的安装过程
 date: 2016-05-21 10:50:40
-tags: [redis,centos,linux]
-categories: [开发笔记]
+tags: 
+- Redis
+- CentOS
+- Linux
+categories:
+- 开发笔记
 ---
 ### 前言
 
@@ -19,6 +23,8 @@ categories: [开发笔记]
 ```
 
 看到此处时，根据自己的需要去选择redis的版本。
+
+<!-- more -->
 
 ### 编译安装redis
 

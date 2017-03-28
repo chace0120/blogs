@@ -1,8 +1,12 @@
 ---
 title: 启动Nginx后请求资源403解决方案总结
 date: 2016-08-27 09:29:40
-tags: [nginx,centos,linux]
-categories: [系统运维]
+tags:
+- Nginx
+- CentOS
+- Linux
+categories:
+- 系统运维
 ---
 ### 前言
 
@@ -15,6 +19,8 @@ categories: [系统运维]
 ### 403解决方案
 
 大体上Nginx出现403的原因有三种，每种都有对应的解决办法。常见的两种原因就是权限问题或index文件缺失。这里假设web目录为“/www”，项目目录为"/www/OA"。
+
+<!-- more -->
 
 - 如果是Nginx对web目录没有操作权限，解决办法如下：
 

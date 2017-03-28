@@ -1,8 +1,12 @@
 ---
 title: SpringBoot应用在CentOS下的监控及服务化脚本实现
 date: 2017-1-17 09:29:40
-tags: [CentOS,Linux,SpringBoot]
-categories: [系统运维]
+tags:
+- CentOS
+- Linux
+- Spring Boot
+categories:
+- 系统运维
 ---
 ### 前言
 近期由于服务器内存配置过低，其中仍有不断更新上线的应用功能，新服务器未落定的情况下，本着“艰苦朴素”的优良传统，暂时关闭了一些使用率不高的服务。
@@ -35,6 +39,8 @@ grep $APP_NAME：筛选出包含目标应用名称的信息行。变量$APP_NAME
 grep -v grep|grep -v kill：“剔除”grep命令和kill命令的信息行，避免造成干扰。亲身执行过ps...grep...命令的人会清楚，进程信息中除了目标进程，还会显示grep命令的进程。
 
 awk '{print $2}'：截取出进程id的信息。
+
+<!-- more -->
 
 - 判断进程id是否存在
 

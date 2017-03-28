@@ -1,8 +1,12 @@
 ---
 title: SpringBoot多数据源及MyBatis配置详解
 date: 2016-07-15 16:38:40
-tags: [springboot,spring,mybatis,datasource]
-categories: [开发笔记]
+tags:
+- Spring Boot
+- Spring
+- MyBatis
+categories:
+- 开发笔记
 ---
 
 ### 前言
@@ -61,6 +65,8 @@ public class MybatisSpringConfig {
 ```
 
 没错，mybatis在spring中就是可以通过如此的简练配置进而正常工作起来。你无需刻意地去创建mybatis的配置文件，无需刻意地去注册mapper接口及指定对应xml文件的位置，这完全得益于[mybatis-spring](http://www.mybatis.org/spring/)，它就像一个“粘合剂”，可以很方便地将mybatis和spring“粘合”在一起。
+
+<!-- more -->
 
 #### MyBatis-Spring的配置步骤
 

@@ -1,7 +1,7 @@
 ---
 title: CentOS部署应用常用命令汇总
 date: 2016-06-08 17:05:40
-tags: [centos,linux]
+tags: [CentOS,Linux]
 categories: [系统运维]
 ---
 
@@ -49,6 +49,8 @@ ps aux | grep <模糊名称>
 ``` Shell
 netstat -tlnp | grep <端口号>
 ```
+
+<!-- more -->
 
 #### 可运行jar包的执行
 

@@ -1,13 +1,15 @@
 ---
 title: IDE中Compile,Make和Build的区别(转)
 date: 2016-10-26 09:29:40
-tags: [Java,IDE]
-categories: [随笔]
+tags: [Intellij IDEA]
+categories: [开发笔记]
 ---
 ### Compile、Make和Build的区别
 针对Java的开发工具，一般都有Compile、Make和Build三个菜单项，完成的功能的都差不多，但是又有区别。
 
 编译，是将源代码转换为可执行代码的过程。编译需要指定源文件和编译输出的文件路径（输出目录）。Java的编译会将java编译为class文件，将非java的文件（一般成为资源文件、比如图片、xml、txt、poperties等文件）原封不动的复制到编译输出目录，并保持源文件夹的目录层次关系。
+
+<!-- more -->
 
 在Java的集成开发环境中，比如Eclipse、IDEA中，有常常有三种与编译相关的选项Compile、Make、Build三个选项。这三个选项最基本的功能都是完成编译过程。但又有很大的区别，区别如下：
 

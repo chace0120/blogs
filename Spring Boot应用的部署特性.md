@@ -1,8 +1,12 @@
 ---
 title: Spring Boot应用的部署特性
 date: 2017-1-18 09:29:40
-tags: [CentOS,Linux,SpringBoot]
-categories: [系统运维]
+tags:
+- CentOS
+- Linux
+- Spring Boot
+categories:
+- 系统运维
 ---
 ### 前言
 按着笔者前一篇文章[《SpringBoot应用在CentOS下的监控及服务化脚本实现》](https://my.oschina.net/angerbaby/blog/826471)所写，笔者花了一天的时间实现了关于运行监控Spring Boot应用的服务化脚本，并在线上服务器上进行了测试运行。
@@ -36,6 +40,8 @@ categories: [系统运维]
 - 按照Spring Boot正常的打包流程，打包应用，生成jar文件。
 
 - 上传jar文件到服务器，直接将jar文件配置为服务执行脚本。
+
+<!-- more -->
 
 ``` Shell
 # 确保jar文件有执行权限

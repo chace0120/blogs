@@ -1,8 +1,12 @@
 ---
 title: Ubuntu下快速安装Nginx
 date: 2016-06-30 16:14:40
-tags: [nginx,ubuntu,linux]
-categories: [开发笔记]
+tags:
+- Nginx
+- Ubuntu
+- Linux
+categories: 
+- 开发笔记
 ---
 ### 前言
 
@@ -23,6 +27,8 @@ Linux操作系统有很多不同的发行版本，像Ubuntu、CentOS、RedHat等
 原先在CentOS下靠的是yum，结果到Ubuntu下一看，没有！网上帖子和文章还是以apt居多，那自然选用apt走着。
 
 但笔者突然先发现使用apt安装nginx的命令中并没有指定版本号，所以笔者好奇自动安装的nginx版本是啥呢？
+
+<!-- more -->
 
 ``` Shell
 # sudo apt-cache policy <packagename>

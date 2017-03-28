@@ -2,6 +2,8 @@ title: Java中文乱码的一种解决方案
 date: 2016-03-28 20:21:18
 tags:
 - Java
+categories: 
+- 开发笔记
 ---
 在jsp中常见的乱码解决办法无外乎是关于get和post两种方式的，但只有切实地在实践中使用时才会注意或者说注重到其他方式。例如，在http请求头中传送中文参数，出现乱码，如何解决？
 
@@ -13,6 +15,8 @@ tags:
 2. 在服务端接收到参数时，iso-8859-1转gbk，无效。
 3. 在发送请求前将中文参数转码，utf-8转iso-8859-1，无效。
 4. 在请求端，HttpHeader设定ContentType为“application/json;UTF-8"，无效。
+
+<!-- more -->
 
 代码如下：
 

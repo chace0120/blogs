@@ -1,7 +1,7 @@
 ---
 title: 关于Intellij IDEA中的Live Templates实践
-date: 2016-09-32 09:29:40
-tags: [IDE,idea]
+date: 2017-03-25 09:29:40
+tags: [Intellij IDEA]
 categories: [开发日志]
 ---
 ### 前言
@@ -12,6 +12,9 @@ categories: [开发日志]
 习惯使用Eclipse的用户，相信会依赖其自动生成类和方法注释的功能，其中包含了必要的javadoc注解，比如@param、@return、@author等。在Eclipse中用户还可以定制自动生成注释的行为。
 
 那么如何在idea中自动生成类和方法注释（注释中需要对应的javadoc注解）呢？
+
+<!-- more -->
+
 #### idea中的方法注释
 idea中并不是不支持生成方法注释，在方法定义上面输入"/\*\*"+回车，idea会根据当前方法中的参数和返回值，生成方法注释，其中会有@param和@return。
 
@@ -25,12 +28,12 @@ idea允许用户自定义类注释的内容，但是相信很多人受自定义�
 
 其实笔者想在这里强调的是，自定义idea中的类注释模板，不在Live Templates中，不要冤枉它。正确的位置在下图所示的地方。
 
-img1
+{% asset_img img1.png %}
 
 #### 自定义方法注释
 上面提到了如果想自定义idea中的方法注释，需要用到Live Templates。先贴出一张截图，里面包含了笔者已经创建好的模板，用于生成笔者需要的方法注释。
 
-img2
+{% asset_img img2.png %}
 
 - 新建一个group，命名为“self”，表明这个组里面的模板是自定义的，可能仅适用于自己的工作场景。
 - 在组里新建一个模板，快捷键定义为“mc”，确认方式选择“Enter”，即在应用模板的地方，输出“mc”+回车，即可生成模板内容。
@@ -38,13 +41,13 @@ img2
 ``` Groovy
 groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s]', '').split(',').toList(); for(i = 0; i < params.size(); i++) {result+='* @param ' + params[i] + ((i < params.size() - 1) ? '\\n\\b' : '')}; return result", methodParameters())
 ```
-img3
+{% asset_img img3.png %}
 
 - $date$也是一个自定义变量，对应的表达式使用内置的date()函数，表示输出当前的日期。
 - $END$是内置的一个变量，表示模板内容生成后，光标停留的位置。生成方法注释后，可能需要填写方法的描述内容，自定义光标停留的位置可以方便后续操作。
 - 生成的自定义模板内容后，光标默认会依次停留在自定义变量的位置，需要用户手动回车确定，直至无自定义变量为止。这个默认行为有时可能是不需要的，所以编辑自定义变量时，选中“skip if defined”即可。
 
-img4
+{% asset_img img4.png %}
 
 OK，模板定义完了，来试一下效果。
 
@@ -76,19 +79,19 @@ public int add(int p1, int p2) {
 
 #### 依赖注入私有属性
 
-img5
+{% asset_img img5.png %}
 
 #### Logger实例
 
-img6
+{% asset_img img6.png %}
 
-img7
+{% asset_img img7.png %}
 
 #### 依赖注入属性资源
 
-img8
+{% asset_img img8.png %}
 
-img9
+{% asset_img img9.png %}
 
 这里可以发现，内容中定义的两个变量，没有指定表达式，表示需要用户手动输入对应的内容。模板内容生成后，光标会依次停留在变量的位置等待用户输入内容。
 
